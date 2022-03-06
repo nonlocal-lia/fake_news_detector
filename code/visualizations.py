@@ -277,7 +277,7 @@ def training_graph(val_dict, title):
     ax.legend()
     return plt.show()
 
-def visualize_top_10(freq_dist, title, ylabel="Count"):
+def visualize_top_10(freq_dist, title, ylabel="Count", save_name=None):
     """
     Plots a bar graph of the top 10 values in frequency dictionary.
 
@@ -303,4 +303,6 @@ def visualize_top_10(freq_dist, title, ylabel="Count"):
     ax.set_ylabel(ylabel)
     ax.yaxis.set_major_locator(MaxNLocator(integer=True))
     ax.tick_params(axis="x", rotation=90)
+    if save_name:
+        plt.savefig(f'images/{save_name}.png')
     plt.show()
