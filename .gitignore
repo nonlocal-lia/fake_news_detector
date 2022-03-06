@@ -4,3 +4,4 @@
 *.pyc
 *__pycache__
 clean_data.pickle
+glove.42B.300d.txt
