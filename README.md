@@ -19,29 +19,31 @@ This particular set of models will focus on the second task by creating a NLP cl
 ## The Data
 Data for this project wa gathered from three places.
 
-[FakeNewsNet](https://github.com/KaiDMML/FakeNewsNet): 
-This was a database constructed as described in this [paper](https://arxiv.org/abs/1809.01286). It consists of news articles marked by PolitiFact and GossipCop as either fake or real as well as tweets mentioning the articles and a wealth of other metadata. The data used in these models was scraped between 3/2-3/4 using the code from the FakeNewsNet git repo.
+[FakeNewsNet](https://github.com/KaiDMML/FakeNewsNet):
 
-		Only the data from the articles was scraped and not all the associated tweet, since this model will focus on.
-		405 Fake stories maked by PolitiFact 
-		536 Real stories marked by PolitiFact 
-		5323 Fake stories marked by GossipCop 
-		16817 Real stories marked by GossipCop
+This was a database constructed as described in this [paper](https://arxiv.org/abs/1809.01286). It consists of news articles marked by PolitiFact and GossipCop as either fake or real as well as tweets mentioning the articles and a wealth of other metadata. The data used in these models was scraped between 3/2-3/4 using the code from the FakeNewsNet git repo. Only the data from the articles was scraped and not all the associated tweet, since this model will focus on.
 
-[Fake and real news dataset](https://www.kaggle.com/clmentbisaillon/fake-and-real-news-dataset) from kaggle 
+This data contains:
+* 405 Fake stories maked by PolitiFact 
+* 536 Real stories marked by PolitiFact 
+* 5323 Fake stories marked by GossipCop 
+* 16817 Real stories marked by GossipCop
+
+[Fake and real news dataset](https://www.kaggle.com/clmentbisaillon/fake-and-real-news-dataset) from kaggle:
+
 This dataset was originally collected to be used in this [paper](https://www.semanticscholar.org/paper/Detection-of-Online-Fake-News-Using-N-Gram-Analysis-Ahmed-Traor%C3%A9/3e4d892fa31ef958abaaabb9a66513096d60f8e8).
 The data consists of fake news articles marked by PolitiFact as well as a collection of articles taken from Reuters that function as the real news articles. Care was taken to make sure the Reuters article was cleaned of the (Reuters) header so the classifier doesn’t just equate real news with “WASHINGTON (Reuters)”  being at the start of most of the  the real articles. Many of the analyses on kaggle have inflated F1 scores, and this is perhaps partly due to using the data as is and not removing these markers. 
 
-    The data contains:
-    17903 Fake stories marked by Politfact
-    20826 Real stories from Reuters
+This data contains:
+* 17903 Fake stories marked by Politfact
+* 20826 Real stories from Reuters
 
 [Source Based Fake News Classification](https://www.kaggle.com/ruchi798/source-based-news-classification)
-The data was originally created for this [paper](http://www.ijirset.com/upload/2020/june/115_4_Source.PDF). The paper cleaned up metadata scraped from 244 websites tagged as "bullshit" by the BS Detector Chrome Extension by Daniel Sieradski. The BS detector marked stories with more nuanced labels, like junk science, biased, hate speech, conspiracy, etc. The authors relabel the data so that merely biased articles were marked as real and only conspiracy, junksci, bs and the like were marked as fake. this data may be useful as a good contrast to the previous dataset, since even the real stories have significant biases, which will hopefully help minimize the extent to which merely biased stories are marked as fake news.
+The data was originally created for this [paper](http://www.ijirset.com/upload/2020/june/115_4_Source.PDF). The paper cleaned up metadata scraped from 244 websites tagged as "bullshit" by the BS Detector Chrome Extension by Daniel Sieradski. The BS detector marked stories with more nuanced labels, like junk science, biased, hate speech, conspiracy, etc. The authors relabel the data so that merely biased articles were marked as real and only conspiracy, junksci, bs and the like were marked as fake. this data may be useful as a good contrast to the previous dataset, since even the real stories have significant biases, which will hopefully help minimize the extent to which merely biased stories are marked as fake news. There are probably some worries about the reliability of this data in particular, but was a fairly small set.
 
-    There are probably some worries about the reliability of this data in particular, but was a fairly small set with only
-    1244 Fake stories
-    762 Real (but biased) Stories
+This data contains
+* 1244 Fake stories
+* 762 Real (but biased) Stories
 
 These three sources were all chosen because they all contain the titles and complete text for the news stories as well as roughly equivalent labeling. There is also a clear advantage of using the mixed dataset, since it avoids biasing the data by too much of a single source of a particular label, and includes a mix of politics as well as fake political and science news, giving a breadth of data that would hopefully make a model constructed from it a bit more generalizable.
 
