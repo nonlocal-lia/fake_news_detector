@@ -50,9 +50,7 @@ These three sources were all chosen because they all contain the titles and comp
 
 ## Exploring the Data
 A full exploration the data can be found in the EDA notebook. To start, single word and bigram frequency in the fake and real story texts were examined and words clouds we constructed. Below we can see the clouds for the bigrams for the real and fake stories. We can tell there are some significant difference in the data between the two categories, which is to be expected given how it is sourced.
-
 ![real bigram cloud](./images/EDA/bigram_freq_real_cloud.png)
-
 ![fake bigram cloud](./images/EDA/bigram_freq_fake_cloud.png)
 
 A LDA model was used to categorize the articles into topic, the topics align quite reasonably with the known sources. A grid search between 5 and 10 categories was used to select the optimal number of topic clusters. Below we can see the clustering using pyLDAvis
