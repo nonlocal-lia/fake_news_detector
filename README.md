@@ -38,7 +38,8 @@ This data contains:
 * 17903 Fake stories marked by Politfact
 * 20826 Real stories from Reuters
 
-[Source Based Fake News Classification](https://www.kaggle.com/ruchi798/source-based-news-classification)
+[Source Based Fake News Classification](https://www.kaggle.com/ruchi798/source-based-news-classification):
+
 The data was originally created for this [paper](http://www.ijirset.com/upload/2020/june/115_4_Source.PDF). The paper cleaned up metadata scraped from 244 websites tagged as "bullshit" by the BS Detector Chrome Extension by Daniel Sieradski. The BS detector marked stories with more nuanced labels, like junk science, biased, hate speech, conspiracy, etc. The authors relabel the data so that merely biased articles were marked as real and only conspiracy, junksci, bs and the like were marked as fake. this data may be useful as a good contrast to the previous dataset, since even the real stories have significant biases, which will hopefully help minimize the extent to which merely biased stories are marked as fake news. There are probably some worries about the reliability of this data in particular, but was a fairly small set.
 
 This data contains
@@ -60,27 +61,27 @@ A LDA model was used to categorize the articles into topic, the topics align qui
 
 The data clustered fairly well into five topic categories. Examining the categories they corresponded roughly to:
 
-    Political campaign
-    Government
-    Celebrity: movies/TV
-    Celebrity: music
-    Foreign News
+* Political campaign
+* Government
+* Celebrity: movies/TV
+* Celebrity: music
+* Foreign News
 
 ## Method of Modeling
 The full text was be used as the sole predictor, since the models performed quite well even without the titles
 
-Four different methods of embedding the full article text were used
-    TF-IDF 
-    Bag of Words
-    GloVe
-    BERT
+Four different methods of embedding the full article text were used:
+* TF-IDF with 1000 dimensional vectors
+* Bag of Words with 20000 word maximum and 200 dimensional vectors
+* GloVe (Common Crawl) using glove.42B.300d.txt which has 300 dimensional vectors
+* BERT using a smaller BERT model from https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-4_H-512_A-8/1
 
 The embedded text was used to train a number of ML classification models using the labels of “Fake” and “Real” as the targets. The models included:
-    Naive Bayesian
-    Logistic
-    Random Forest
-    XGBoost
-    Neural Networks
+* Naive Bayesian with TF-IDF
+* Logistic with TF-IDF
+* Random Forest with TF-IDF
+* XGBoost with TF-IDF
+* Neural Networks with bag or words, GloVe and BERT
 
 ### The Models
 
