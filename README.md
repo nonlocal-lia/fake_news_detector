@@ -105,6 +105,7 @@ The embedded text was used to train a number of ML classification models using t
 ![BERT confusion matrix](./images/Models/bert_test_cm.png)
 
 The final model was selected by considering the weighted F1 score, which turned out to be the GloVe embedded model
+
 ![f1 scores](./images/Models/F1_scores.png)
 
 ### Final Results by Topic
