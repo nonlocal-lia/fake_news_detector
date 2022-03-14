@@ -130,7 +130,7 @@ This model used a pretrained and structure small BERT layer: 'https://tfhub.dev/
 
 This model had 92.1% accuracy and an F1 score of 0.921 on test data. It the longest of all models to train on CPU at 41640.8367 seconds, but was a bit more reasonable to run on GPU. It's prediction output was also too slow to be useable without significant resources.
 
-![BERT confusion matrix](./images/Models/bert_test_cm.png)
+![BERT confusion matrix](./images/Models/test_bert_cm.png)
 
 The final model was selected by considering the weighted F1 score, which turned out to be the GloVe embedded model
 
