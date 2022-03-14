@@ -19,7 +19,7 @@ This means such systems are probably best aimed at filtering out lwo quality, in
 This particular set of models will focus on the second task by creating a NLP classification model from a set of articles that have been tagged as fake or real by a source.
 
 ## The Data
-Data for this project wa gathered from three places.
+Data for this project wa gathered from three places, for detailed instructions on how to recreate the data, see the README.md in the data folder..
 
 [FakeNewsNet](https://github.com/KaiDMML/FakeNewsNet):
 
@@ -207,3 +207,18 @@ Useful future work should focus on collecting more varied sources of data, as we
   booktitle={ISDDC},
   year={2017}
 }
+
+## Repository Structure
+
+```
+├── README.md                           <- The top-level README for reviewers of this project
+├── modeling_notebook.ipynb             <- Narrative documentation of modeling process in Jupyter notebook
+├── EDA_notebook.ipynb                  <- Narrative documentation of cleaning and exploration process in Jupyter notebook
+├── presentation.pdf                    <- PDF version of project presentation
+├── data                                <- Collection of all data used, contains README.md describing the data collection process
+├── models                              <- saved versions of models under 100 Mb
+├── code                                <- Functions for cleaning and processing the data and constructing visualizations
+└── images                              <- Visualizations generated from code
+     ├── Models                         <- Visualizations made during modeling
+     └── EDA                            <- Visualizations made during EDA
+```
