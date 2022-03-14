@@ -1,5 +1,7 @@
 # Fake News Detector
 
+An interactive version of this detector can be found [here.](https://share.streamlit.io/nonlocal-lia/fake_news_detector_streamlit/front_end.py) This repo contains a description of the modeling process and all the code used to construct the models.
+
 ## Problem
 Social media platforms are routinely plagued with low quality and clickbaiting stories that are extremely unreliable along with an assortment of conspiracy theories and manipulative disinformation. The presence of this information on these platforms is both a major social and political issue, and is a major problem for the platform's brands. For example, millions of people refuse to use facebook precisely because of the sense that it's platform is being used to spread dangerous and false ideas. But, others have been just as upset by what they see as censorship or heavyhandedness in the responses to misinformation. There is unfortunately no solution to this issue that everyone will agree on, but automated tagging of misinformation or alterations to algorthms to not promote certain stories is likely to be a part of social media for the forseeable future.
 
@@ -53,7 +55,7 @@ A full exploration the data can be found in the EDA notebook. To start, single w
 ![real bigram cloud](./images/EDA/bigram_freq_real_cloud.png)
 ![fake bigram cloud](./images/EDA/bigram_freq_fake_cloud.png)
 
-A LDA model was used to categorize the articles into topic, the topics align quite reasonably with the known sources. A grid search between 5 and 10 categories was used to select the optimal number of topic clusters. Below we can see the clustering using pyLDAvis
+A LDA model was used to categorize the articles into topic, the topics align quite reasonably with the known sources. A grid search between 5 and 10 categories was used to select the optimal number of topic clusters. Below we can see the clustering using pyLDAvis, for an interactive version consult the EDA notebook or, even better, the [streamlit app](https://share.streamlit.io/nonlocal-lia/fake_news_detector_streamlit/front_end.py) 
 
 ![pyLDAvis](./images/EDA/pyLDAvis.png)
 
@@ -81,40 +83,66 @@ The embedded text was used to train a number of ML classification models using t
 * XGBoost with TF-IDF
 * Neural Networks with bag or words, GloVe and BERT
 
-### The Models
+## Model Results
 
 #### Naive Bayesian TF-IDF
+The Bayesian model was the worst performer with an accuracy of 82% and an F1 Score of 0.82 on test data, but was the quickest to train and predict taking 0.0235 seconds to train.
+
 ![naive bayesian confusion matrix](./images/Models/test_TFIDF_bayes.png)
 
 #### Logistic TF-IDF
+The logistic model was the 2nd worst performer with an accuracy of 88.7% and an F1 Score of 0.887 on test data, but was the 2nd quickest to train and predict taking 1.2189 seconds to train.
+
 ![logistic confusion matrix](./images/Models/logistic_test_cm.png)
 
 #### Random Forest TF-IDF
+The forest model was the best of the TF-IDF models and non neural net model with an accuraccy of 92% an a weighted F1 score of 0.92 on test data, it did however take significantly long to train at 222.3309 seconds on a CPU.
+
 ![random forest confusion matrix](./images/Models/test_TFIDF_forest.png)
 
 #### XGBoost TF-IDF
+The XGBoost mode performed marginally worse than the Forest model with an accuracy of 91.1% and a weighted F1 score of 0.911 on test data, but took about 1/4 the time of the forest model to fit at 53.8420 seconds on a CPU.
+
 ![xgboost confusion matrix](./images/Models/test_TFIDF_xgb.png)
 
 #### Bag of Words RNN
+The neural network with the custom trained bad of words embedding containing 20,000 words and 200 vectors had the following structure:
+
+![bag of words structure](./images/Models/baseline_rnn_structure.png)
+
+The model performed marginally better than the TF-IDF models with 92.2% accuracy and an F1 score of 0.922 on test data. It did however take an order of magnitude longer to train on a CPU at 2145.0022 seconds, but was more reasonable to run on GPU.
+
 ![bag of words confusion matrix](./images/Models/baseline_rnn_test_cm.png)
 
 #### GloVe Model
+This model used a fixed untrainable GloVe embedding layer using the 42B 300 vector Common Crawl embedding from https://nlp.stanford.edu/projects/glove/. It had the following structure:
+
+![glove structure](./images/Models/glove_rnn_structure.png)
+
+This was the best overall model with 93.5% accuracy and an F1 score of 0.935 on test data. It did however take lond to train on a CPU at 5934.0679 seconds, but was more reasonable to run on GPU.
+
 ![glove confusion matrix](./images/Models/glove_test_cm.png)
 
 #### BERT Model
+This model used a pretrained and structure small BERT layer: 'https://tfhub.dev/tensorflow/small_bert/bert_en_uncased_L-4_H-512_A-8/1'. The BERT layer was trainable and additional dense layers were added to aid in learning. The model had the following structure:
+
+![bert structure](./images/Models/bert_structure.png)
+
+This model had 92.1% accuracy and an F1 score of 0.921 on test data. It the longest of all models to train on CPU at 41640.8367 seconds, but was a bit more reasonable to run on GPU. It's prediction output was also too slow to be useable without significant resources.
+
 ![BERT confusion matrix](./images/Models/bert_test_cm.png)
 
 The final model was selected by considering the weighted F1 score, which turned out to be the GloVe embedded model
 
 ![f1 scores](./images/Models/F1_scores.png)
 
-### Final Results by Topic
+## Final Model(GloVe) Results by Topic
 We can see that the model had the fewest errors in the two most common topics, which is a sign that performance will likely rise with more data in the other categories. The unusual result is in the foreign news category, which had significant amounts of data. This poor performance is likely due to a number of things, first there is likely more inherent diversity of topic with the broad area of 'anything outside the US', secondly, since these categories were derived using LDA, the cluster is not perfect and contains significant errors and oversimplifications, the foreign news "topic" is somewhat of a misnomer. The topic likely contains a bunch of other topics that just didn't happen to fit into the other categories.
 
 ![topic performance](./images/Models/topic_performance.png)
 
 ## Interpreting the Models
-Lime was used to examine how the models were attending to the text, and offers some insight into how the models arrive at their predictions. For a more indepth look, consult the interpretation section of the modeling notebook. Here we will just go through two pairs of examples.
+Lime was used to examine how the models were attending to the text, and offers some insight into how the models arrive at their predictions. For a more indepth look, consult the interpretation section of the modeling notebook or even better go to the [streamlit app](https://share.streamlit.io/nonlocal-lia/fake_news_detector_streamlit/front_end.py). Here we will just go through two pairs of examples.
 
 #### Bayes Lime
 We can see at least some interesting things even in the worst performer, the bayesian model, it seems to recognize there is a lot of fake news about Obama, and seems to pick up on 'probably' as a sign of fakeness, likely due to conspiracy sites engaging in more speculation. Some useful words like 'bs' are not recognized, likely due to the limited dictionary of 20,000 words used in tokenizing for TF-IDF.
@@ -131,6 +159,14 @@ The GloVe model placed a lot of weight on 'bs' which seems reasonable, since pro
 
 The GloVe model picked up on formating of the Reuters articles like this one. We can see this in its treatment of "washington" as a positive indicator of real news as well as language frequently used in quotations like "said" which appear frequently in mainstream news sources. 
 ![glove real lime](./images/Models/glove_real_lime.png)
+
+Although the models performed surprisingly well on the classification task, we should have some doubts about the generalizablity of the model. AS we say during the interpretation, many of the features that the models were picking up on are time sensitive. For example, fake news about Obama and Trump may become less frequent with time. The range of topics and sources in the data was also rather limited. It is not clear that just having trained on mostly Reuter's articles that the model will be as capable of recognizing other real sources.
+
+## Limitations and Future Work
+
+Unfortunately, this means to some degree any model of this sort will need constant updating and retraining with new information as the common sources of misinformation change.
+
+Useful future work should focus on collecting more varied sources of data, as well as trying to use non-content related features such as as coherence or perplexity in the recognition of poor quality sources. Such approaches have some promise of being more generalizable, at least in the domain of poor constructed spam fake news.
 
 ### Citations
 @article{turc2019,
