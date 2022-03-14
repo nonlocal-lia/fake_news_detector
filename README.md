@@ -128,7 +128,7 @@ This model used a pretrained and structure small BERT layer: 'https://tfhub.dev/
 
 ![bert structure](./images/Models/bert_structure.png)
 
-This model had 92.1% accuracy and an F1 score of 0.921 on test data. It the longest of all models to train on CPU at 41640.8367 seconds, but was a bit more reasonable to run on GPU. It's prediction output was also too slow to be useable without significant resources.
+This model had 92.1% accuracy and an F1 score of 0.921 on test data. It was the longest of all models to train on CPU at 41640.8367 seconds, but was a bit more reasonable to run on GPU. It's prediction output was also too slow to be useable without significant resources.
 
 ![BERT confusion matrix](./images/Models/test_bert_cm.png)
 
