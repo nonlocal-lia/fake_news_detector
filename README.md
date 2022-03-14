@@ -105,6 +105,7 @@ The embedded text was used to train a number of ML classification models using t
 ![BERT confusion matrix](./images/Models/bert_test_cm.png)
 
 The final model was selected by considering the weighted F1 score, which turned out to be the GloVe embedded model
+
 ![f1 scores](./images/Models/F1_scores.png)
 
 ### Final Results by Topic
@@ -116,7 +117,7 @@ We can see that the model had the fewest errors in the two most common topics, w
 Lime was used to examine how the models were attending to the text, and offers some insight into how the models arrive at their predictions. For a more indepth look, consult the interpretation section of the modeling notebook. Here we will just go through two pairs of examples.
 
 #### Bayes Lime
-We can see at least some interesting things even in the worst performer, the bayesian model, it seems to recognize there is a lot of fake news about Obama, and seems to pick up on 'probably' as a sign of fakeness, likely due to conspiracy sites engaging in more speculation. some useful words like 'bs' are not recongized, likely due to the limited dictionary of 20,000 words used in tokenizing for TF-IDF.
+We can see at least some interesting things even in the worst performer, the bayesian model, it seems to recognize there is a lot of fake news about Obama, and seems to pick up on 'probably' as a sign of fakeness, likely due to conspiracy sites engaging in more speculation. Some useful words like 'bs' are not recognized, likely due to the limited dictionary of 20,000 words used in tokenizing for TF-IDF.
 
 ![bayes fake lime](./images/Models/bayes_fake_lime.png)
 
