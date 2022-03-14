@@ -1,6 +1,8 @@
 # Fake News Detector
 
-An interactive version of this detector can be found [here.](https://share.streamlit.io/nonlocal-lia/fake_news_detector_streamlit/front_end.py) This repo contains a description of the modeling process and all the code used to construct the models.
+![Photo by Markus Winkler on Unsplash](./images/markus-winkler-BCvjjPU5RG4-unsplash.jpg)
+
+The final model used by this fake news detector can tell fake from fake news in the testing data with 93.5% accuracy. An interactive version of this detector can be found [here.](https://share.streamlit.io/nonlocal-lia/fake_news_detector_streamlit/front_end.py) This repo contains a description of the modeling process and all the code used to construct the models.
 
 ## Problem
 Social media platforms are routinely plagued with low quality and clickbaiting stories that are extremely unreliable, along with an assortment of conspiracy theories and manipulative disinformation. The presence of this information on these platforms is both a major social and political issue, and is a major problem for the platform's brands. For example, millions of people refuse to use Facebook precisely because they believe the platform is being used to spread dangerous and false ideas. But, others have been just as upset by what they see as censorship or heavyhandedness in the responses to misinformation. There is unfortunately no solution to this issue that everyone will agree on, but automated tagging of misinformation or alterations to algorthms to not promote certain stories is likely to be a significant part of social media for the forseeable future, and if it is going to be performed it is important that the models these algorthms are based around are as accurate as possible.
