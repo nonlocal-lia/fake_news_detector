@@ -1,5 +1,6 @@
 # Fake News Detector
 
+
 ![Photo by Markus Winkler on Unsplash](./images/markus-winkler-BCvjjPU5RG4-unsplash.jpg)
 
 The final model used by this fake news detector can tell fake from fake news in the testing data with 93.5% accuracy. An interactive version of this detector can be found [here.](https://share.streamlit.io/nonlocal-lia/fake_news_detector_streamlit/front_end.py) This repo contains a description of the modeling process and all the code used to construct the models.
@@ -52,7 +53,7 @@ This data contains
 These three sources were all chosen because they all contain the titles and complete text for the news stories as well as roughly equivalent labeling. There is also a clear advantage of using the mixed dataset, since it avoids biasing the data by using too much of a single source of a particular label, and includes a mix of politics as well as fake celebrity and science news, giving a breadth of data that would hopefully make a model constructed from it a bit more generalizable.
 
 ## Exploring the Data
-A full exploration the data can be found in the EDA notebook. To start, single word and bigram frequency in the fake and real story texts were examined and words clouds we constructed. Below we can see the clouds for the bigrams for the real and fake stories. We can tell there are some significant difference in the data between the two categories, which is to be expected given how it is sourced.
+A full exploration the data can be found in the [EDA notebook](./EDA_notebook.ipynb). To start, single word and bigram frequency in the fake and real story texts were examined and words clouds we constructed. Below we can see the clouds for the bigrams for the real and fake stories. We can tell there are some significant difference in the data between the two categories, which is to be expected given how it is sourced.
 
 ![real bigram cloud](./images/EDA/bigram_freq_real_cloud.png)
 ![fake bigram cloud](./images/EDA/bigram_freq_fake_cloud.png)
@@ -70,7 +71,7 @@ The data clustered fairly well into five topic categories. Examining the categor
 * Foreign and Misc News
 
 ## Method of Modeling
-The full article text was be used as the sole predictor.
+A full account of the modeling process along with all the code to create the models can be found in the [modeling notebook](./modeling_notebook.ipynb). The full article text was be used as the sole predictor of real or fake news.
 
 Four different methods of embedding the full article text were used:
 * TF-IDF with 1000 dimensional vectors
