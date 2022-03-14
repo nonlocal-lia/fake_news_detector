@@ -1,6 +1,5 @@
 # Fake News Detector
 
-![Photo by Markus Winkler on Unsplash](./images/markus-winkler-BCvjjPU5RG4-unsplash.jpg)
 
 The final model used by this fake news detector can tell fake from fake news in the testing data with 93.5% accuracy. An interactive version of this detector can be found [here.](https://share.streamlit.io/nonlocal-lia/fake_news_detector_streamlit/front_end.py) This repo contains a description of the modeling process and all the code used to construct the models.
 
