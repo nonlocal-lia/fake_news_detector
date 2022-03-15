@@ -4,7 +4,6 @@
 *.pyc
 *__pycache__
 glove.42B.300d.txt
-*.pickle
 glove_rnn_model/
 baseline_rnn_model/
 bert_model/
