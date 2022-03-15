@@ -5,6 +5,6 @@
 *__pycache__
 glove.42B.300d.txt
 *.pickle
-models/glove_rnn_model
-models/baseline_rnn_model
-models/bert_model
+glove_rnn_model/
+baseline_rnn_model/
+bert_model/
