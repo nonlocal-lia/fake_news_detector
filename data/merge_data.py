@@ -20,8 +20,9 @@ news_filtered.dropna(inplace=True)
 print('Data Cleaned')
 print('Merging Data')
 complete = pd.concat([fake_news_net, fake, real, news_filtered], ignore_index=True)
+complete.dropna(inplace=True)
 compression_opts = dict(method='zip',
                         archive_name='complete_data.csv')  
-complete.to_csv('./data/complete_data.zip', index=False,
+complete.to_csv('./complete_data.zip', index=False,
           compression=compression_opts)
 print('Data Saved')
