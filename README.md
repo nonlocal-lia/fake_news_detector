@@ -1,5 +1,5 @@
 # Fake News Detector
-
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/nonlocal-lia/fake_news_detector/HEAD)
 
 ![Photo by Markus Winkler on Unsplash](./images/markus-winkler-BCvjjPU5RG4-unsplash.jpg)
 
