@@ -14,8 +14,8 @@ Unfortunately, no machine learning model can totally solve the problem with fals
 With this in mind it is important to understand what kinds of things a machine learning model can reasonable do with respect to this problem, and there are at least four common approaches to the problem:
 
 1) Recognize similarities between fake or real stories that it was trained on and new versions of those stories 
-2) Recognize formating and coherence issues in articles, which can be an indication of unreliability
-3) Recognize metdata and contextual features of certain sources known to spread lots of false information
+2) Recognize formatting and coherence issues in articles, which can be an indication of unreliability
+3) Recognize metadata and contextual features of certain sources known to spread lots of false information
 4) Construct a model of a known evidence base and determine reliability relative to evidential support from the base
 
 This particular set of models will focus on the first task by creating a NLP classification model from a set of articles that have been tagged as fake or real by a source. These kinds of models tend to be best aimed at filtering out low quality, incoherent sources feigning to be regular news source, and filtering out stories containing information that some accepted fact checking source has already investigated.
